@@ -1,9 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Minesweeper extends AbstractMineSweeper{
     private int width;
     private int height;
     private int mines;
+    private String[][] board;
+
     public Minesweeper() {
         width = 0;
         height = 0;
@@ -41,6 +45,10 @@ public class Minesweeper extends AbstractMineSweeper{
 
     @Override
     public void startNewGame(int row, int col, int explosionCount) {
+        width = row;
+        height = col;
+        mines = explosionCount;
+
 
     }
 
