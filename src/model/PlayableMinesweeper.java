@@ -12,3 +12,6 @@ public interface PlayableMinesweeper {
     void toggleFlag(int x, int y);
     void setGameStateNotifier(IGameStateNotifier notifier);
 }
+
+
+// dit is een test
