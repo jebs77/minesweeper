@@ -15,3 +15,4 @@ public interface PlayableMinesweeper {
 
 
 // dit is een test
+// de test is geslaagd
