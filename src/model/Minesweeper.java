@@ -6,7 +6,7 @@ public class Minesweeper extends AbstractMineSweeper{
     private int width;
     private int height;
     private int mines;
-    private String[][] board;
+    private Tile[][] board;
 
     public Minesweeper() {
         width = 0;
@@ -34,13 +34,14 @@ public class Minesweeper extends AbstractMineSweeper{
             width = 16;
             height = 16;
             mines = 40;
+
         }
         else{
             width = 16;
             height = 30;
             mines = 99;
         }
-
+        board = new Tile[width][height];
     }
 
     @Override
@@ -96,4 +97,7 @@ public class Minesweeper extends AbstractMineSweeper{
     public AbstractTile generateExplosiveTile() {
         return null;
     }
+
+
 }
+
