@@ -1,9 +1,14 @@
 package model;
 
 public class Minesweeper extends AbstractMineSweeper{
-    int width = 0;
-    int height = 0;
-
+    private int width;
+    private int height;
+    private int mines;
+    public Minesweeper() {
+        width = 0;
+        height = 0;
+        mines = 0;
+    }
     @Override
     public int getWidth() {
         return width;
@@ -19,6 +24,17 @@ public class Minesweeper extends AbstractMineSweeper{
         if (level == Difficulty.EASY){
             width = 8;
             height = 8;
+            mines = 10;
+        }
+        else if (level == Difficulty.MEDIUM){
+            width = 16;
+            height = 16;
+            mines = 40;
+        }
+        else{
+            width = 16;
+            height = 30;
+            mines = 99;
         }
 
     }
