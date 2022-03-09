@@ -13,6 +13,3 @@ public interface PlayableMinesweeper {
     void setGameStateNotifier(IGameStateNotifier notifier);
 }
 
-
-// dit is een test
-// de test is geslaagd
