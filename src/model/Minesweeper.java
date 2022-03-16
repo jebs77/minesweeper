@@ -6,7 +6,7 @@ public class Minesweeper extends AbstractMineSweeper {
     private int width;
     private int height;
     private int mines;
-    private Tile[][] board;
+    private AbstractTile[][] board;
 
     public Minesweeper() {
         width = 0;
@@ -62,13 +62,17 @@ public class Minesweeper extends AbstractMineSweeper {
 
         @Override
         public void setWorld (AbstractTile[][] world){
+<<<<<<< HEAD
 
+=======
+            board = world;
+>>>>>>> f2168ac9cd355a7ce63b92c87f2e4284ff9bc454
         }
 
         @Override
         public AbstractTile getTile(int x, int y) {
             if((0 <= x && x < width)&& (0 <= y && y <height) ){
-                return board[x][y];
+                return board[y][x];
             }
             else {
                 return null;
