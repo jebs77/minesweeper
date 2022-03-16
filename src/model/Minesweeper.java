@@ -92,12 +92,12 @@ public class Minesweeper extends AbstractMineSweeper {
 
         @Override
         public void flag ( int x, int y){
-
+            board[x][y].flag();
         }
 
         @Override
         public void unflag ( int x, int y){
-
+            board[x][y].unflag();
         }
 
         @Override
