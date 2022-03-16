@@ -64,7 +64,8 @@ public class Minesweeper extends AbstractMineSweeper {
         public void setWorld (AbstractTile[][] world){
 
             board = world;
-
+            height = world.length;
+            width = world[0].length;
         }
 
         @Override
