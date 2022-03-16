@@ -55,12 +55,19 @@ public class Minesweeper extends AbstractMineSweeper{
 
     @Override
     public void toggleFlag(int x, int y) {
+        AbstractTile newTile = getTile(x, y);
+        if (newTile.isFlagged()){
+            newTile.unflag();
+        }
+        else{
+            newTile.unflag();
+        }
 
     }
 
     @Override
     public AbstractTile getTile(int x, int y) {
-        return null;
+        return board[x][y];
     }
 
     @Override
