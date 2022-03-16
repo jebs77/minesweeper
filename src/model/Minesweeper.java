@@ -63,49 +63,27 @@ public class Minesweeper extends AbstractMineSweeper {
 
     @Override
     public void toggleFlag(int x, int y) {
-<<<<<<< HEAD
-        if (board != null) {
-            AbstractTile newTile = getTile(x, y);
-            if (newTile.isFlagged()) {
-                newTile.unflag();
-            } else {
-                newTile.flag();
-            }
-            AbstractTile newTile = getTile(x, y);
-            if (newTile.isFlagged()) {
-                newTile.unflag();
-            } else {
-                newTile.flag();
-=======
         AbstractTile newTile = getTile(x, y);
         if (newTile.isFlagged()) {
             newTile.unflag();
         } else {
             newTile.flag();
->>>>>>> 46358567fbc776a1be95e5301064b162c85fc76f
+
 
             }
         }
 
-<<<<<<< HEAD
         @Override
-        public AbstractTile getTile ( int x, int y){
+        public void setWorld (AbstractTile[][]world){
+
+        }
+
+        @Override
+        public AbstractTile getTile(int x, int y) {
             return board[x][y];
         }
 
-        @Override
-        public void setWorld (AbstractTile[][]world){
-=======
-    @Override
-    public AbstractTile getTile(int x, int y) {
-        return board[x][y];
-    }
-//tst
-    @Override
-    public void setWorld(AbstractTile[][] world) {
->>>>>>> 0cf4f9173d60b38e9384d92dfd5f4cfc20b70d96
 
-        }
 
         @Override
         public void open ( int x, int y){
@@ -127,17 +105,13 @@ public class Minesweeper extends AbstractMineSweeper {
 
         }
 
-<<<<<<< HEAD
-        @Override
-        public AbstractTile generateEmptyTile () {
 
+
+        @Override
+        public AbstractTile generateEmptyTile() {
+            return null;
         }
-=======
-    @Override
-    public AbstractTile generateEmptyTile() {
-        return null;
-    }
->>>>>>> 46358567fbc776a1be95e5301064b162c85fc76f
+
 
         @Override
         public AbstractTile generateExplosiveTile () {
@@ -146,5 +120,5 @@ public class Minesweeper extends AbstractMineSweeper {
 
 
     }
-}
+
 
