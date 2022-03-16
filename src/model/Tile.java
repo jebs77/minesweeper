@@ -5,10 +5,10 @@ public class Tile extends AbstractTile{
     private boolean flagged;
     private boolean explosive;
 
-    public Tile() {
-        open = false;
-        flagged = false;
-        explosive = false;
+    public Tile(boolean isOpen, boolean isFlagged, boolean isExplosive) {
+        open = isOpen;
+        flagged = isFlagged;
+        explosive = isExplosive;
     }
 
     @Override

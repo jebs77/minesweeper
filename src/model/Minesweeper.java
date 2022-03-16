@@ -43,7 +43,7 @@ public class Minesweeper extends AbstractMineSweeper {
         board = new Tile[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                board[i][j] = new Tile();
+                board[i][j] = new Tile(false, false, false);
             }
         }
     }
@@ -96,7 +96,7 @@ public class Minesweeper extends AbstractMineSweeper {
 
         @Override
         public AbstractTile generateEmptyTile() {
-            AbstractTile emptyTile = new Tile();
+            AbstractTile emptyTile = new Tile(false, false, false);
             return emptyTile;
         }
 
