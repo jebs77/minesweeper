@@ -87,6 +87,7 @@ public class Minesweeper extends AbstractMineSweeper {
             }
         }
 
+<<<<<<< HEAD
         @Override
         public AbstractTile getTile ( int x, int y){
             return board[x][y];
@@ -94,6 +95,15 @@ public class Minesweeper extends AbstractMineSweeper {
 
         @Override
         public void setWorld (AbstractTile[][]world){
+=======
+    @Override
+    public AbstractTile getTile(int x, int y) {
+        return board[x][y];
+    }
+//tst
+    @Override
+    public void setWorld(AbstractTile[][] world) {
+>>>>>>> 0cf4f9173d60b38e9384d92dfd5f4cfc20b70d96
 
         }
 
