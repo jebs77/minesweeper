@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-public class Minesweeper extends AbstractMineSweeper{
+public class Minesweeper extends AbstractMineSweeper {
     private int width;
     private int height;
     private int mines;
@@ -13,6 +13,7 @@ public class Minesweeper extends AbstractMineSweeper{
         height = 0;
         mines = 0;
     }
+
     @Override
     public int getWidth() {
         return width;
@@ -25,24 +26,22 @@ public class Minesweeper extends AbstractMineSweeper{
 
     @Override
     public void startNewGame(Difficulty level) {
-        if (level == Difficulty.EASY){
+        if (level == Difficulty.EASY) {
             width = 8;
             height = 8;
             mines = 10;
-        }
-        else if (level == Difficulty.MEDIUM){
+        } else if (level == Difficulty.MEDIUM) {
             width = 16;
             height = 16;
             mines = 40;
 
-        }
-        else{
+        } else {
             width = 16;
             height = 30;
             mines = 99;
         }
         board = new Tile[width][height];
-        for( int i = 0; i < width; i++) {
+        for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 board[i][j] = new Tile();
             }
@@ -55,8 +54,8 @@ public class Minesweeper extends AbstractMineSweeper{
         height = col;
         mines = explosionCount;
         board = new Tile[width][height];
-        for( int i = 0; i < width; i++){
-            for( int j = 0; j < height; j++ ){
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
                 board[i][j] = new Tile();
             }
         }
@@ -71,55 +70,56 @@ public class Minesweeper extends AbstractMineSweeper{
             } else {
                 newTile.flag();
             }
-        AbstractTile newTile = getTile(x, y);
-        if (newTile.isFlagged()) {
-            newTile.unflag();
-        } else {
-            newTile.flag();
+            AbstractTile newTile = getTile(x, y);
+            if (newTile.isFlagged()) {
+                newTile.unflag();
+            } else {
+                newTile.flag();
+
+            }
+        }
+
+        @Override
+        public AbstractTile getTile ( int x, int y){
+            return board[x][y];
+        }
+
+        @Override
+        public void setWorld (AbstractTile[][]world){
 
         }
-    }
 
-    @Override
-    public AbstractTile getTile(int x, int y) {
-        return board[x][y];
-    }
+        @Override
+        public void open ( int x, int y){
 
-    @Override
-    public void setWorld(AbstractTile[][] world) {
+        }
 
-    }
+        @Override
+        public void flag ( int x, int y){
 
-    @Override
-    public void open(int x, int y) {
+        }
 
-    }
+        @Override
+        public void unflag ( int x, int y){
 
-    @Override
-    public void flag(int x, int y) {
+        }
 
-    }
+        @Override
+        public void deactivateFirstTileRule () {
 
-    @Override
-    public void unflag(int x, int y) {
+        }
 
-    }
+        @Override
+        public AbstractTile generateEmptyTile () {
 
-    @Override
-    public void deactivateFirstTileRule() {
+        }
 
-    }
+        @Override
+        public AbstractTile generateExplosiveTile () {
+            return null;
+        }
 
-    @Override
-    public AbstractTile generateEmptyTile() {
 
     }
-
-    @Override
-    public AbstractTile generateExplosiveTile() {
-        return null;
-    }
-
-
 }
 
