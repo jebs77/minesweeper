@@ -62,11 +62,9 @@ public class Minesweeper extends AbstractMineSweeper {
 
         @Override
         public void setWorld (AbstractTile[][] world){
-<<<<<<< HEAD
 
-=======
             board = world;
->>>>>>> f2168ac9cd355a7ce63b92c87f2e4284ff9bc454
+
         }
 
         @Override
