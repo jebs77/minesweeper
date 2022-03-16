@@ -69,7 +69,7 @@ public class Minesweeper extends AbstractMineSweeper{
             if (newTile.isFlagged()) {
                 newTile.unflag();
             } else {
-                newTile.unflag();
+                newTile.flag();
             }
         }
 
