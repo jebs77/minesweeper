@@ -87,7 +87,7 @@ public class Minesweeper extends AbstractMineSweeper {
 
         @Override
         public void open ( int x, int y){
-
+            
         }
 
         @Override
