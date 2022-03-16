@@ -36,7 +36,7 @@ public class Minesweeper extends AbstractMineSweeper {
     }
 
     @Override
-    public void startNewGame(int row, int col, int explosionCount) {
+    public void startNewGame(int col, int row, int explosionCount) {
         width = row;
         height = col;
         mines = explosionCount;
