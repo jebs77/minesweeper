@@ -42,6 +42,11 @@ public class Minesweeper extends AbstractMineSweeper{
             mines = 99;
         }
         board = new Tile[width][height];
+        for( int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                board[i][j] = new Tile();
+            }
+        }
     }
 
     @Override
@@ -50,7 +55,11 @@ public class Minesweeper extends AbstractMineSweeper{
         height = col;
         mines = explosionCount;
         board = new Tile[width][height];
-
+        for( int i = 0; i < width; i++){
+            for( int j = 0; j < height; j++ ){
+                board[i][j] = new Tile();
+            }
+        }
     }
 
     @Override
