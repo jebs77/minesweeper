@@ -37,9 +37,6 @@ public class Tile extends AbstractTile{
         return explosive;
     }
 
-    public void makeExplosive() {
-        explosive = true;
-    }
 
 
     @Override
