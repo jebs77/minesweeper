@@ -61,7 +61,7 @@ public class Minesweeper extends AbstractMineSweeper {
         }
 
         @Override
-        public void setWorld (AbstractTile[][]world){
+        public void setWorld (AbstractTile[][] world){
 
         }
 
