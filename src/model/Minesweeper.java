@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Minesweeper extends AbstractMineSweeper {
     private int width;
@@ -41,11 +42,24 @@ public class Minesweeper extends AbstractMineSweeper {
         height = col;
         mines = explosionCount;
         board = new Tile[width][height];
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                board[i][j] = new Tile(false);
+        Random rand = new Random();
+        int placedMines = 0;
+        while ( placedMines < mines){
+            int x = rand.nextInt(row);
+            int y = rand.nextInt(col);
+            if(getTile(x, y) == null){
+                board[x][y] = generateExplosiveTile();
+                placedMines ++;
+            }
+        for(int i = 0; i< col; i++){
+            for (int j = 0;  j< row; j++){
+                if (getTile(i, j)  != null){
+                    board[i][j] = generateEmptyTile();
+                }
             }
         }
+        }
+
     }
 
     @Override
