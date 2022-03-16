@@ -103,7 +103,8 @@ public class Minesweeper extends AbstractMineSweeper {
 
         @Override
         public AbstractTile generateExplosiveTile () {
-            AbstractTile newTile = new Tile()
+            AbstractTile newTile = new Tile();
+            return newTile;
         }
 
 
