@@ -60,6 +60,7 @@ public class Minesweeper extends AbstractMineSweeper {
         }
         }
 
+    System.out.println(board);
     }
 
     @Override
