@@ -27,24 +27,11 @@ public class Minesweeper extends AbstractMineSweeper {
     @Override
     public void startNewGame(Difficulty level) {
         if (level == Difficulty.EASY) {
-            width = 8;
-            height = 8;
-            mines = 10;
+            startNewGame(8,8,10);
         } else if (level == Difficulty.MEDIUM) {
-            width = 16;
-            height = 16;
-            mines = 40;
-
+            startNewGame(16,16,40);
         } else {
-            width = 16;
-            height = 30;
-            mines = 99;
-        }
-        board = new Tile[width][height];
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                board[i][j] = new Tile();
-            }
+            startNewGame(16,30,99);
         }
     }
 
@@ -109,7 +96,8 @@ public class Minesweeper extends AbstractMineSweeper {
 
         @Override
         public AbstractTile generateEmptyTile() {
-            return null;
+            AbstractTile emptyTile = new Tile();
+            return emptyTile;
         }
 
 
