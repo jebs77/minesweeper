@@ -53,7 +53,7 @@ public class Minesweeper extends AbstractMineSweeper {
             }
         for(int i = 0; i< col; i++){
             for (int j = 0;  j< row; j++){
-                if (getTile(i, j)  != null){
+                if (getTile(i, j)  == null){
                     board[i][j] = generateEmptyTile();
                 }
             }
