@@ -67,7 +67,12 @@ public class Minesweeper extends AbstractMineSweeper {
 
         @Override
         public AbstractTile getTile(int x, int y) {
-            return board[x][y];
+            if((0 <= x && x < width)&& (0 <= y && y <height) ){
+                return board[x][y];
+            }
+            else {
+                return null;
+            }
         }
 
 
