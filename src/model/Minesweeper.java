@@ -45,8 +45,8 @@ public class Minesweeper extends AbstractMineSweeper {
         Random rand = new Random();
         int placedMines = 0;
         while ( placedMines < mines){
-            int x = rand.nextInt(row);
-            int y = rand.nextInt(col);
+            int x = rand.nextInt(row-1);
+            int y = rand.nextInt(col-1);
             if(getTile(x, y) == null){
                 board[x][y] = generateExplosiveTile();
                 placedMines ++;
@@ -54,7 +54,7 @@ public class Minesweeper extends AbstractMineSweeper {
         for(int i = 0; i< col; i++){
             for (int j = 0;  j< row; j++){
                 if (getTile(i, j)  == null){
-                    board[i][j] = generateEmptyTile();
+                    board[j][i] = generateEmptyTile();
                 }
             }
         }
@@ -86,7 +86,7 @@ public class Minesweeper extends AbstractMineSweeper {
         @Override
         public AbstractTile getTile(int x, int y) {
             if((0 <= x && x < width)&& (0 <= y && y <height) ){
-                return board[y][x];
+                return board[x][y];
             }
             else {
                 return null;
