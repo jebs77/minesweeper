@@ -139,6 +139,7 @@ public class MinesweeperView implements IGameStateNotifier {
         this.setGameModel(gameModel);
     }
 
+
     public void setGameModel(PlayableMinesweeper newGameModel) {
         this.gameModel = newGameModel;
         this.gameModel.setGameStateNotifier(this);

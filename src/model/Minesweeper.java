@@ -38,10 +38,10 @@ public class Minesweeper extends AbstractMineSweeper {
 
     @Override
     public void startNewGame(int col, int row, int explosionCount) {
-        width = row;
         height = col;
+        width = row;
         mines = explosionCount;
-        board = new Tile[width][height];
+        board = new Tile[height][width];
         Random rand = new Random();
         int placedMines = 0;
         while ( placedMines < mines) {
@@ -52,8 +52,8 @@ public class Minesweeper extends AbstractMineSweeper {
                 placedMines++;
             }
         }
-        for(int i = 0; i< row; i++){
-            for (int j = 0;  j< col; j++){
+        for(int i = 0; i< col; i++){
+            for (int j = 0;  j< row; j++){
                 if (getTile(j, i)  == null){
                     board[i][j] = generateEmptyTile();
                 }
