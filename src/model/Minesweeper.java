@@ -45,8 +45,8 @@ public class Minesweeper extends AbstractMineSweeper {
         Random rand = new Random();
         int placedMines = 0;
         while ( placedMines < mines) {
-            int x = rand.nextInt(row - 1);
-            int y = rand.nextInt(col - 1);
+            int x = rand.nextInt(col - 1);
+            int y = rand.nextInt(row - 1);
             if (getTile(y, x) == null) {
                 board[x][y] = generateExplosiveTile();
                 placedMines++;
