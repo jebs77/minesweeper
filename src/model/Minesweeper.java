@@ -266,6 +266,26 @@ public class Minesweeper extends AbstractMineSweeper {
                             open(x + 1, y);
                         }
                     }
+                    if(x != 0 && y != 0){
+                        if(getTile(y-1,x-1).isOpened() == false){
+                            open(x-1,y-1);
+                        }
+                    }
+                    if(x != width-1 && y != 0){
+                        if(getTile(y-1,x+1).isOpened() == false){
+                            open(x+1,y-1);
+                        }
+                    }
+                    if(x != 0 && y != height-1){
+                        if(getTile(y+1,x-1).isOpened() == false){
+                            open(x-1,y+1);
+                        }
+                    }
+                    if(x != width-1 && y != height-1){
+                        if(getTile(y+1,x+1).isOpened() == false){
+                            open(x+1,y+1);
+                        }
+                    }
 
                 }
                 }
