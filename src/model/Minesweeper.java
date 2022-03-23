@@ -11,12 +11,21 @@ public class Minesweeper extends AbstractMineSweeper {
     private int height;
     private int mines;
     private AbstractTile[][] board;
+<<<<<<< HEAD
+=======
+    private int flagCount;
+
+    
+
+
+>>>>>>> 5c413d5ac3b7da7353fa5d0b51368db97bfe76a1
 
 
     public Minesweeper() {
         width = 0;
         height = 0;
         mines = 0;
+        flagCount = 0;
     }
 
     @Override
@@ -77,9 +86,16 @@ public class Minesweeper extends AbstractMineSweeper {
     public void toggleFlag(int x, int y) {
         AbstractTile newTile = getTile(x, y);
         if (newTile.isFlagged()) {
+
             newTile.unflag();
+            flagCount--;
+            viewNotifier.notifyUnflagged(x, y);
+            viewNotifier.notifyFlagCountChanged(flagCount);
         } else {
             newTile.flag();
+            flagCount++;
+            viewNotifier.notifyFlagged(x, y);
+            viewNotifier.notifyFlagCountChanged(flagCount);
             }
         }
 
@@ -105,6 +121,13 @@ public class Minesweeper extends AbstractMineSweeper {
 
         @Override
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 5c413d5ac3b7da7353fa5d0b51368db97bfe76a1
         public void open ( int x, int y) {
             int surrounded = 0;
             if(getTile(y,x).isExplosive()== false) {
@@ -252,12 +275,16 @@ public class Minesweeper extends AbstractMineSweeper {
 
         @Override
         public void flag( int x, int y){
-        board[x][y].flag();
+            board[x][y].flag();
+            viewNotifier.notifyFlagged(x, y);
+            viewNotifier.notifyFlagCountChanged(flagCount+1);
         }
 
         @Override
         public void unflag( int x, int y){
             board[x][y].unflag();
+            viewNotifier.notifyUnflagged(x, y);
+            viewNotifier.notifyFlagCountChanged(flagCount-1);
         }
 
         @Override
