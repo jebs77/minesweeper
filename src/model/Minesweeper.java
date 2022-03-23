@@ -11,17 +11,7 @@ public class Minesweeper extends AbstractMineSweeper {
     private int height;
     private int mines;
     private AbstractTile[][] board;
-
-
-
     private int flagCount;
-
-    
-
-
-
-
-
 
 
     public Minesweeper() {
@@ -78,6 +68,8 @@ public class Minesweeper extends AbstractMineSweeper {
             }
 
         }
+        viewNotifier.notifyNewGame();
+
 
 
 
