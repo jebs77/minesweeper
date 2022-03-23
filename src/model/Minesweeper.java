@@ -11,7 +11,7 @@ public class Minesweeper extends AbstractMineSweeper {
     private int height;
     private int mines;
     private AbstractTile[][] board;
-    private IGameStateNotifier viewNotifier;
+
 
     public Minesweeper() {
         width = 0;
