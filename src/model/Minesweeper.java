@@ -68,7 +68,11 @@ public class Minesweeper extends AbstractMineSweeper {
             }
 
         }
+<<<<<<< HEAD
         viewNotifier.notifyNewGame(row, col);
+=======
+//        viewNotifier.notifyNewGame();
+>>>>>>> 61d031df2f3fd3c545eb0fee289f5ac52d769fb9
 
 
 
@@ -291,6 +295,10 @@ public class Minesweeper extends AbstractMineSweeper {
 
                 }
                 }
+            else {
+                viewNotifier.notifyExploded(x,y);
+                viewNotifier.notifyGameLost();
+            }
             }
 
 
