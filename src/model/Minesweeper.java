@@ -71,8 +71,6 @@ public class Minesweeper extends AbstractMineSweeper {
             newTile.unflag();
         } else {
             newTile.flag();
-
-
             }
         }
 
@@ -97,17 +95,65 @@ public class Minesweeper extends AbstractMineSweeper {
 
 
         @Override
-        public void open ( int x, int y){
-            
+        public void open ( int x, int y) {
+            int surrounded = 0;
+
+
+//                top left corner
+                if (x == 0 && y == 0) {
+                    if (getTile(0, 1).isExplosive() == true) {
+                        surrounded++;
+                    }
+                    for (int i = 0; i < 2; i++) {
+                        if (getTile(1, i).isExplosive() == true) {
+                            surrounded++;
+                        }
+                    }
+                }
+//            top right corner
+                if (x == width - 1 && y == 0) {
+                    if (getTile(0, x - 1).isExplosive() == true) {
+                        surrounded++;
+                    }
+                    for (int i = width - 1; i > width - 3; i--) {
+                        if (getTile(1, i).isExplosive() == true) {
+                            surrounded++;
+                        }
+                    }
+                }
+//            bottom left cornser
+            if (x == 0 && y == height-1) {
+                if (getTile(height-1, x +1).isExplosive() == true) {
+                    surrounded++;
+                }
+                for (int i = 0 ; i <2; i++) {
+                    if (getTile(1, i).isExplosive() == true) {
+                        surrounded++;
+                    }
+                }
+                }
+//            bottom right corner
+            if (x == width-1 && y == height-1) {
+                if (getTile(height - 1, width - 1).isExplosive() == true) {
+                    surrounded++;
+                }
+                for (int i = width - 1; i > width - 3; i--) {
+                    if (getTile(height - 1, i).isExplosive() == true) {
+                        surrounded++;
+                    }
+                }
+            }
+            viewNotifier.notifyOpened(x, y, surrounded);
+            }
+
+
+        @Override
+        public void flag( int x, int y){
+        board[x][y].flag();
         }
 
         @Override
-        public void flag ( int x, int y){
-            board[x][y].flag();
-        }
-
-        @Override
-        public void unflag ( int x, int y){
+        public void unflag( int x, int y){
             board[x][y].unflag();
         }
 
