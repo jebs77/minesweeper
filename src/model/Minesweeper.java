@@ -124,7 +124,7 @@ public class Minesweeper extends AbstractMineSweeper {
 
         public void open ( int x, int y) {
             int surrounded = 0;
-
+            if(getTile(y,x).isExplosive()== false) {
 
 //                top left corner
                 if (x == 0 && y == 0) {
@@ -138,7 +138,7 @@ public class Minesweeper extends AbstractMineSweeper {
                     }
                 }
 //            top right corner
-                if (x == width - 1 && y == 0) {
+                else if (x == width - 1 && y == 0) {
                     if (getTile(0, x - 1).isExplosive() == true) {
                         surrounded++;
                     }
@@ -149,29 +149,121 @@ public class Minesweeper extends AbstractMineSweeper {
                     }
                 }
 //            bottom left cornser
-            if (x == 0 && y == height-1) {
-                if (getTile(height-1, x +1).isExplosive() == true) {
-                    surrounded++;
-                }
-                for (int i = 0 ; i <2; i++) {
-                    if (getTile(1, i).isExplosive() == true) {
+                else if (x == 0 && y == height - 1) {
+                    if (getTile(height - 1, x + 1).isExplosive() == true) {
                         surrounded++;
                     }
-                }
+                    for (int i = 0; i < 2; i++) {
+                        if (getTile(1, i).isExplosive() == true) {
+                            surrounded++;
+                        }
+                    }
                 }
 //            bottom right corner
-            if (x == width-1 && y == height-1) {
-                if (getTile(height - 1, width - 1).isExplosive() == true) {
-                    surrounded++;
-                }
-                for (int i = width - 1; i > width - 3; i--) {
-                    if (getTile(height - 1, i).isExplosive() == true) {
+                else if (x == width - 1 && y == height - 1) {
+                    if (getTile(height - 1, width - 1).isExplosive() == true) {
                         surrounded++;
                     }
+                    for (int i = width - 1; i > width - 3; i--) {
+                        if (getTile(height - 1, i).isExplosive() == true) {
+                            surrounded++;
+                        }
+                    }
+                }
+//            left wall
+                else if (x == 0 && y != 0 && y != height - 1) {
+                    if (getTile(y - 1, x).isExplosive()) {
+                        surrounded++;
+                    }
+                    if (getTile(y + 1, x).isExplosive()) {
+                        surrounded++;
+                    }
+                    for (int i = -1; i < 2; i++) {
+                        if (getTile(y + i, x + 1).isExplosive()) {
+                            surrounded++;
+                        }
+                    }
+                }
+//            right wall
+                else if (x == width - 1 && y != 0 && y != height - 1) {
+                    if (getTile(y - 1, x).isExplosive()) {
+                        surrounded++;
+                    }
+                    if (getTile(y + 1, x).isExplosive()) {
+                        surrounded++;
+                    }
+                    for (int i = -1; i < 2; i++) {
+                        if (getTile(y + i, x - 1).isExplosive()) {
+                            surrounded++;
+                        }
+                    }
+                }
+//            top wall
+                else if (y == 0 && x != 0 && x != width - 1) {
+                    if (getTile(y, x - 1).isExplosive()) {
+                        surrounded++;
+                    }
+                    if (getTile(y, x + 1).isExplosive()) {
+                        surrounded++;
+                    }
+                    for (int i = -1; i < 2; i++) {
+                        if (getTile(y + 1, x + i).isExplosive()) {
+                            surrounded++;
+                        }
+                    }
+                }
+//            bottom wall
+                else if (y == height-1 && x != 0 && x != width - 1) {
+                    if (getTile(y, x - 1).isExplosive()) {
+                        surrounded++;
+                    }
+                    if (getTile(y, x + 1).isExplosive()) {
+                        surrounded++;
+                    }
+                    for (int i = -1; i < 2; i++) {
+                        if (getTile(y -1, x + i).isExplosive()) {
+                            surrounded++;
+                        }
+                    }
+                }
+                else{
+                    for (int i = -1; i < 2; i++) {
+                        if (getTile(y - 1, x + i).isExplosive()) {
+                            surrounded++;
+                        }
+                    }
+                    for (int j = -1; j < 2; j++) {
+                        if (getTile(y + 1, x + j).isExplosive()) {
+                            surrounded++;
+                        }
+                    }
+                        if (getTile(y, x - 1).isExplosive()) {
+                            surrounded++;
+                        }
+                        if (getTile(y, x + 1).isExplosive()) {
+                            surrounded++;
+                        }
+                    }
+
+                viewNotifier.notifyOpened(x, y, surrounded);
+                if (surrounded == 0){
+                    if(y != 0) {
+                        open(x, y - 1);
+                    }
+                    if(y != height-1) {
+                        open(x, y + 1);
+                    }
+                    if(x != 0) {
+                        open(x - 1, y);
+                    }
+                    if(x != width-1) {
+                        open(x + 1, y);
+                    }
+
+                }
                 }
             }
-            viewNotifier.notifyOpened(x, y, surrounded);
-            }
+
 
 
 
