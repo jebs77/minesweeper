@@ -1,5 +1,8 @@
 package model;
 
+import notifier.IGameStateNotifier;
+import view.MinesweeperView;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,6 +11,7 @@ public class Minesweeper extends AbstractMineSweeper {
     private int height;
     private int mines;
     private AbstractTile[][] board;
+    private IGameStateNotifier viewNotifier;
 
     public Minesweeper() {
         width = 0;
@@ -34,10 +38,12 @@ public class Minesweeper extends AbstractMineSweeper {
         } else {
             startNewGame(16,30,99);
         }
+
     }
 
     @Override
     public void startNewGame(int col, int row, int explosionCount) {
+
         height = col;
         width = row;
         mines = explosionCount;
@@ -58,7 +64,10 @@ public class Minesweeper extends AbstractMineSweeper {
                     board[i][j] = generateEmptyTile();
                 }
             }
+
         }
+
+
 
 
 
