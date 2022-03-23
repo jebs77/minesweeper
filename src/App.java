@@ -19,10 +19,10 @@ public class App {
 
 
 
-        model.startNewGame(Difficulty.EASY);
+
         MinesweeperView view = new MinesweeperView();
         view.setGameModel(model);
-        view.notifyNewGame(model.getHeight(), model.getWidth());
+        model.startNewGame(Difficulty.EASY);
 
     }
 }

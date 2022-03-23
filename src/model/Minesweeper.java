@@ -68,7 +68,7 @@ public class Minesweeper extends AbstractMineSweeper {
             }
 
         }
-        viewNotifier.notifyNewGame();
+        viewNotifier.notifyNewGame(row, col);
 
 
 
