@@ -11,11 +11,20 @@ public class Minesweeper extends AbstractMineSweeper {
     private int height;
     private int mines;
     private AbstractTile[][] board;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 691a7b626494de7d964e313f72988cbd7d038aee
     private int flagCount;
 
     
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 691a7b626494de7d964e313f72988cbd7d038aee
     public Minesweeper() {
         width = 0;
         height = 0;
@@ -118,6 +127,7 @@ public class Minesweeper extends AbstractMineSweeper {
 
 
         @Override
+<<<<<<< HEAD
 
 
 
@@ -126,6 +136,8 @@ public class Minesweeper extends AbstractMineSweeper {
 
 
 
+=======
+>>>>>>> 691a7b626494de7d964e313f72988cbd7d038aee
         public void open ( int x, int y) {
             int surrounded = 0;
             if(getTile(y,x).isExplosive()== false) {
@@ -248,20 +260,28 @@ public class Minesweeper extends AbstractMineSweeper {
                             surrounded++;
                         }
                     }
-
+                getTile(y,x).open();
                 viewNotifier.notifyOpened(x, y, surrounded);
                 if (surrounded == 0){
                     if(y != 0) {
-                        open(x, y - 1);
+                        if(getTile(y-1, x).isOpened()== false) {
+                            open(x, y - 1);
+                        }
                     }
                     if(y != height-1) {
-                        open(x, y + 1);
+                        if(getTile(y+1, x).isOpened()== false) {
+                            open(x, y + 1);
+                        }
                     }
                     if(x != 0) {
-                        open(x - 1, y);
+                        if (getTile(y, x-1).isOpened()== false) {
+                            open(x - 1, y);
+                        }
                     }
                     if(x != width-1) {
-                        open(x + 1, y);
+                        if (getTile(y, x+1).isOpened()== false) {
+                            open(x + 1, y);
+                        }
                     }
 
                 }
