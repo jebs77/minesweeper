@@ -68,7 +68,7 @@ public class Minesweeper extends AbstractMineSweeper {
             }
 
         }
-        viewNotifier.notifyNewGame();
+//        viewNotifier.notifyNewGame();
 
 
 
@@ -291,6 +291,10 @@ public class Minesweeper extends AbstractMineSweeper {
 
                 }
                 }
+            else {
+                viewNotifier.notifyExploded(x,y);
+                viewNotifier.notifyGameLost();
+            }
             }
 
 
