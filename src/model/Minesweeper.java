@@ -11,20 +11,19 @@ public class Minesweeper extends AbstractMineSweeper {
     private int height;
     private int mines;
     private AbstractTile[][] board;
-<<<<<<< HEAD
-=======
 
->>>>>>> 691a7b626494de7d964e313f72988cbd7d038aee
+
+
     private int flagCount;
 
     
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 691a7b626494de7d964e313f72988cbd7d038aee
+
+
+
     public Minesweeper() {
         width = 0;
         height = 0;
@@ -88,7 +87,7 @@ public class Minesweeper extends AbstractMineSweeper {
 
     @Override
     public void toggleFlag(int x, int y) {
-        AbstractTile newTile = getTile(x, y);
+        AbstractTile newTile = getTile(y, x);
         if (newTile.isOpened() == false) {
             if (newTile.isFlagged()) {
 
@@ -127,17 +126,11 @@ public class Minesweeper extends AbstractMineSweeper {
 
 
         @Override
-<<<<<<< HEAD
 
 
 
 
 
-
-
-
-=======
->>>>>>> 691a7b626494de7d964e313f72988cbd7d038aee
         public void open ( int x, int y) {
             int surrounded = 0;
             if(getTile(y,x).isExplosive()== false) {
