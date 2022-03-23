@@ -159,22 +159,22 @@ public class Minesweeper extends AbstractMineSweeper {
                 }
 //            bottom left cornser
                 else if (x == 0 && y == height - 1) {
-                    if (getTile(height - 1, x + 1).isExplosive() == true) {
+                    if (getTile(y, x + 1).isExplosive() == true) {
                         surrounded++;
                     }
                     for (int i = 0; i < 2; i++) {
-                        if (getTile(1, i).isExplosive() == true) {
+                        if (getTile(y-1, i).isExplosive() == true) {
                             surrounded++;
                         }
                     }
                 }
 //            bottom right corner
                 else if (x == width - 1 && y == height - 1) {
-                    if (getTile(height - 1, width - 1).isExplosive() == true) {
+                    if (getTile(y , x - 1).isExplosive() == true) {
                         surrounded++;
                     }
                     for (int i = width - 1; i > width - 3; i--) {
-                        if (getTile(height - 1, i).isExplosive() == true) {
+                        if (getTile(y - 1, i).isExplosive() == true) {
                             surrounded++;
                         }
                     }
