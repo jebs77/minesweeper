@@ -83,18 +83,21 @@ public class Minesweeper extends AbstractMineSweeper {
     @Override
     public void toggleFlag(int x, int y) {
         AbstractTile newTile = getTile(x, y);
-        if (newTile.isFlagged()) {
+        if (newTile.isOpened() == false) {
+            if (newTile.isFlagged()) {
 
-            newTile.unflag();
-            flagCount--;
-            viewNotifier.notifyUnflagged(x, y);
-            viewNotifier.notifyFlagCountChanged(flagCount);
-        } else {
-            newTile.flag();
-            flagCount++;
-            viewNotifier.notifyFlagged(x, y);
-            viewNotifier.notifyFlagCountChanged(flagCount);
+                newTile.unflag();
+                flagCount--;
+                viewNotifier.notifyUnflagged(x, y);
+                viewNotifier.notifyFlagCountChanged(flagCount);
+            } else {
+                newTile.flag();
+                flagCount++;
+                viewNotifier.notifyFlagged(x, y);
+                viewNotifier.notifyFlagCountChanged(flagCount);
             }
+        }
+
         }
 
         @Override
