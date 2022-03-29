@@ -49,6 +49,7 @@ public class Minesweeper extends AbstractMineSweeper {
         viewNotifier.notifyFlagCountChanged(0);
         flagCount = 0;
         mines = explosionCount;
+        viewNotifier.notifyMineCountChanged(mines-flagCount);
         board = new Tile[width][height];
         Random rand = new Random();
         int placedMines = 0;
@@ -83,11 +84,15 @@ public class Minesweeper extends AbstractMineSweeper {
                 flagCount--;
                 viewNotifier.notifyUnflagged(x, y);
                 viewNotifier.notifyFlagCountChanged(flagCount);
+                viewNotifier.notifyMineCountChanged(mines-flagCount);
+
             } else {
                 newTile.flag();
                 flagCount++;
                 viewNotifier.notifyFlagged(x, y);
                 viewNotifier.notifyFlagCountChanged(flagCount);
+                viewNotifier.notifyMineCountChanged(mines-flagCount);
+
             }
         }
 
@@ -297,6 +302,7 @@ public class Minesweeper extends AbstractMineSweeper {
             board[x][y].flag();
             viewNotifier.notifyFlagged(x, y);
             viewNotifier.notifyFlagCountChanged(flagCount+1);
+
         }
 
         @Override
@@ -304,6 +310,7 @@ public class Minesweeper extends AbstractMineSweeper {
             board[x][y].unflag();
             viewNotifier.notifyUnflagged(x, y);
             viewNotifier.notifyFlagCountChanged(flagCount-1);
+
         }
 
         @Override
