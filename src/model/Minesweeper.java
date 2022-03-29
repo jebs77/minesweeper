@@ -46,6 +46,8 @@ public class Minesweeper extends AbstractMineSweeper {
     public void startNewGame(int col, int row, int explosionCount) {
         width = col;
         height = row;
+        viewNotifier.notifyFlagCountChanged(0);
+        flagCount = 0;
         mines = explosionCount;
         board = new Tile[width][height];
         Random rand = new Random();
