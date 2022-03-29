@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Minesweeper extends AbstractMineSweeper {
-    private int width;
     private int height;
+    private int width;
     private int mines;
     private AbstractTile[][] board;
     private int flagCount;
 
 
     public Minesweeper() {
-        width = 0;
         height = 0;
+        width = 0;
         mines = 0;
         flagCount = 0;
     }
@@ -46,15 +46,15 @@ public class Minesweeper extends AbstractMineSweeper {
     @Override
     public void startNewGame(int col, int row, int explosionCount) {
 
-        height = col;
-        width = row;
+        width = col;
+        height = row;
         mines = explosionCount;
-        board = new Tile[height][width];
+        board = new Tile[width][height];
         Random rand = new Random();
         int placedMines = 0;
         while ( placedMines < mines) {
-            int x = rand.nextInt(col - 1);
-            int y = rand.nextInt(row - 1);
+            int x = rand.nextInt(col);
+            int y = rand.nextInt(row );
             if (getTile(y, x) == null) {
                 board[x][y] = generateExplosiveTile();
                 placedMines++;
@@ -97,13 +97,13 @@ public class Minesweeper extends AbstractMineSweeper {
         public void setWorld (AbstractTile[][] world){
 
             board = world;
-            height = world.length;
-            width = world[0].length;
+            width = world.length;
+            height = world[0].length;
         }
 
         @Override
         public AbstractTile getTile(int y, int x) {
-            if((0 <= x && x < height)&& (0 <= y && y <width) ){
+            if((0 <= x && x < width)&& (0 <= y && y <height) ){
                 return board[x][y];
             }
             else {
@@ -249,7 +249,7 @@ public class Minesweeper extends AbstractMineSweeper {
                             open(x, y - 1);
                         }
                     }
-                    if(y != height-1) {
+                    if(y != width-1) {
                         if(getTile(y+1, x).isOpened()== false) {
                             open(x, y + 1);
                         }
@@ -259,7 +259,7 @@ public class Minesweeper extends AbstractMineSweeper {
                             open(x - 1, y);
                         }
                     }
-                    if(x != width-1) {
+                    if(x != height-1) {
                         if (getTile(y, x+1).isOpened()== false) {
                             open(x + 1, y);
                         }
@@ -269,17 +269,17 @@ public class Minesweeper extends AbstractMineSweeper {
                             open(x-1,y-1);
                         }
                     }
-                    if(x != width-1 && y != 0){
+                    if(x != height-1 && y != 0){
                         if(getTile(y-1,x+1).isOpened() == false){
                             open(x+1,y-1);
                         }
                     }
-                    if(x != 0 && y != height-1){
+                    if(x != 0 && y != width-1){
                         if(getTile(y+1,x-1).isOpened() == false){
                             open(x-1,y+1);
                         }
                     }
-                    if(x != width-1 && y != height-1){
+                    if(x != height-1 && y != width-1){
                         if(getTile(y+1,x+1).isOpened() == false){
                             open(x+1,y+1);
                         }
