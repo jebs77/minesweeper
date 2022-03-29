@@ -1,8 +1,10 @@
 package model;
 
-import java.awt.*;
 import java.time.Duration;
+import java.time.LocalTime;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Minesweeper extends AbstractMineSweeper {
     private int height;
@@ -11,7 +13,8 @@ public class Minesweeper extends AbstractMineSweeper {
     private AbstractTile[][] board;
     private int flagCount;
     private int checked_files;
-
+    private LocalTime startTime;
+    private Timer timer;
 
     public Minesweeper() {
         height = 0;
@@ -31,6 +34,12 @@ public class Minesweeper extends AbstractMineSweeper {
     }
 
     @Override
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+
+    @Override
     public void startNewGame(Difficulty level) {
         if (level == Difficulty.EASY) {
             startNewGame(8,8,10);
@@ -47,9 +56,14 @@ public class Minesweeper extends AbstractMineSweeper {
         width = col;
         height = row;
         viewNotifier.notifyFlagCountChanged(0);
+        startTime = LocalTime.now();
         flagCount = 0;
         mines = explosionCount;
         viewNotifier.notifyMineCountChanged(mines-flagCount);
+        timer = new Timer();
+        long delay = 0;
+        long period = 1000;
+        timer.scheduleAtFixedRate(new GetTimeDifference(), delay, period );
         board = new Tile[width][height];
         Random rand = new Random();
         int placedMines = 0;
@@ -242,6 +256,7 @@ public class Minesweeper extends AbstractMineSweeper {
                 getTile(y,x).open();
                 checked_files ++;
                 if ((checked_files == width*height-mines) && (flagCount == mines)){
+                    timer.cancel();
                     viewNotifier.notifyGameWon();
                 }
                 viewNotifier.notifyOpened(x, y, surrounded);
@@ -291,7 +306,9 @@ public class Minesweeper extends AbstractMineSweeper {
                 }
             else {
                 viewNotifier.notifyExploded(x,y);
+                timer.cancel();
                 viewNotifier.notifyGameLost();
+
             }
             }
 
@@ -318,7 +335,12 @@ public class Minesweeper extends AbstractMineSweeper {
 
         }
 
-
+        class GetTimeDifference extends TimerTask {
+            public void run() {
+                Duration difference = Duration.between(startTime, LocalTime.now());
+                viewNotifier.notifyTimeElapsedChanged(difference);
+            }
+        }
 
         @Override
         public AbstractTile generateEmptyTile() {
@@ -332,6 +354,7 @@ public class Minesweeper extends AbstractMineSweeper {
             AbstractTile newTile = new Tile(true);
             return newTile;
         }
+
 
 
 

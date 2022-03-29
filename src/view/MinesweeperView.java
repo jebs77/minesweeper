@@ -1,12 +1,14 @@
 package view;
 
 import model.Difficulty;
+import model.Minesweeper;
 import model.PlayableMinesweeper;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
-
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -202,6 +204,11 @@ public class MinesweeperView implements IGameStateNotifier {
     @Override
     public void notifyFlagCountChanged(int newFlagCount) {
         this.flagCountView.setText(Integer.toString(newFlagCount));
+    }
+
+    @Override
+    public void notifyTimeElapsedChanged(Duration newTimeElapsed) {
+        this.timerView.setText(Long.toString(newTimeElapsed.get(ChronoUnit.SECONDS)));
     }
 
     @Override

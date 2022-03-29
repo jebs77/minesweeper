@@ -22,7 +22,7 @@ public class App {
 
         MinesweeperView view = new MinesweeperView();
         view.setGameModel(model);
-        model.startNewGame(Difficulty.HARD);
+        model.startNewGame(Difficulty.EASY);
 
     }
 }
