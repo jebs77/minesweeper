@@ -111,14 +111,7 @@ public class Minesweeper extends AbstractMineSweeper {
             }
         }
 
-
-
         @Override
-
-
-
-
-
         public void open ( int x, int y) {
             int surrounded = 0;
             if(getTile(y,x).isExplosive()== false) {
