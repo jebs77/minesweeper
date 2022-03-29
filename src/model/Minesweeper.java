@@ -2,7 +2,15 @@ package model;
 
 import java.awt.*;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.Random;
+import java.util.Timer;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Minesweeper extends AbstractMineSweeper {
     private int height;
@@ -234,6 +242,7 @@ public class Minesweeper extends AbstractMineSweeper {
                             surrounded++;
                         }
                     }
+
                 getTile(y,x).open();
                 checked_files ++;
                 if ((checked_files == width*height-mines) && (flagCount == mines)){
