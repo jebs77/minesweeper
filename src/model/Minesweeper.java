@@ -1,9 +1,7 @@
 package model;
 
-import notifier.IGameStateNotifier;
-import view.MinesweeperView;
-
-import java.util.ArrayList;
+import java.awt.*;
+import java.time.Duration;
 import java.util.Random;
 
 public class Minesweeper extends AbstractMineSweeper {
@@ -12,6 +10,7 @@ public class Minesweeper extends AbstractMineSweeper {
     private int mines;
     private AbstractTile[][] board;
     private int flagCount;
+    private int checked_files;
 
 
     public Minesweeper() {
@@ -45,7 +44,6 @@ public class Minesweeper extends AbstractMineSweeper {
 
     @Override
     public void startNewGame(int col, int row, int explosionCount) {
-
         width = col;
         height = row;
         mines = explosionCount;
@@ -235,6 +233,10 @@ public class Minesweeper extends AbstractMineSweeper {
                         }
                     }
                 getTile(y,x).open();
+                checked_files ++;
+                if ((checked_files == width*height-mines) && (flagCount == mines)){
+                    viewNotifier.notifyGameWon();
+                }
                 viewNotifier.notifyOpened(x, y, surrounded);
                 if (surrounded == 0){
                     if(y != 0) {
@@ -242,7 +244,7 @@ public class Minesweeper extends AbstractMineSweeper {
                             open(x, y - 1);
                         }
                     }
-                    if(y != width-1) {
+                    if(y != height-1) {
                         if(getTile(y+1, x).isOpened()== false) {
                             open(x, y + 1);
                         }
@@ -252,7 +254,7 @@ public class Minesweeper extends AbstractMineSweeper {
                             open(x - 1, y);
                         }
                     }
-                    if(x != height-1) {
+                    if(x != width-1) {
                         if (getTile(y, x+1).isOpened()== false) {
                             open(x + 1, y);
                         }
@@ -262,17 +264,17 @@ public class Minesweeper extends AbstractMineSweeper {
                             open(x-1,y-1);
                         }
                     }
-                    if(x != height-1 && y != 0){
+                    if(x != width-1 && y != 0){
                         if(getTile(y-1,x+1).isOpened() == false){
                             open(x+1,y-1);
                         }
                     }
-                    if(x != 0 && y != width-1){
+                    if(x != 0 && y != height-1){
                         if(getTile(y+1,x-1).isOpened() == false){
                             open(x-1,y+1);
                         }
                     }
-                    if(x != height-1 && y != width-1){
+                    if(x != width-1 && y != height-1){
                         if(getTile(y+1,x+1).isOpened() == false){
                             open(x+1,y+1);
                         }
@@ -285,7 +287,6 @@ public class Minesweeper extends AbstractMineSweeper {
                 viewNotifier.notifyGameLost();
             }
             }
-
 
 
 
@@ -322,6 +323,7 @@ public class Minesweeper extends AbstractMineSweeper {
             AbstractTile newTile = new Tile(true);
             return newTile;
         }
+
 
 
     }

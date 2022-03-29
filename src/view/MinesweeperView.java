@@ -4,15 +4,7 @@ import model.Difficulty;
 import model.PlayableMinesweeper;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
 
 import java.awt.event.MouseAdapter;
@@ -180,10 +172,14 @@ public class MinesweeperView implements IGameStateNotifier {
     @Override
     public void notifyGameLost() {
         this.removeAllTileEvents();
+        JFrame frame = new JFrame("game lost");
+        JOptionPane.showMessageDialog(frame, "you clicked on a mine, and have lost the game");
         //throw new UnsupportedOperationException();
     }
     @Override
     public void notifyGameWon() {
+        JFrame frame = new JFrame("game won");
+        JOptionPane.showMessageDialog(frame, "you discovered all mines, congratulations");
         this.removeAllTileEvents();
         throw new UnsupportedOperationException();
     }
