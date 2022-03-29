@@ -1,12 +1,14 @@
 package view;
 
 import model.Difficulty;
+import model.Minesweeper;
 import model.PlayableMinesweeper;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
-
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -37,8 +39,10 @@ public class MinesweeperView implements IGameStateNotifier {
     private JPanel world = new JPanel();
     private JPanel timerPanel = new JPanel();
     private JPanel flagPanel = new JPanel();
+    private JPanel minesPanel = new JPanel();
     private JLabel timerView = new JLabel();
     private JLabel flagCountView = new JLabel();
+    private JLabel minesView = new JLabel();
 
     public MinesweeperView() {
         this.window = new JFrame("Minesweeper");
@@ -88,6 +92,10 @@ public class MinesweeperView implements IGameStateNotifier {
             System.out.println("Unable to locate flag resource");
         }
 
+        minesPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        minesPanel.add(new JLabel("MINES LEFT: "));
+        minesPanel.add(this.minesView);
+
         this.window.setLayout(new GridBagLayout());
         GridBagConstraints layoutConstraints = new GridBagConstraints();
         layoutConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
@@ -101,6 +109,9 @@ public class MinesweeperView implements IGameStateNotifier {
         layoutConstraints.fill = GridBagConstraints.BOTH;
         layoutConstraints.gridx = 0;
         layoutConstraints.gridy = 1;
+        this.window.add(minesPanel, layoutConstraints);
+        layoutConstraints.gridx = 0;
+        layoutConstraints.gridy = 2;
         layoutConstraints.gridwidth = 2;
         layoutConstraints.weightx = 1.0;
         layoutConstraints.weighty = 1.0;
@@ -197,9 +208,7 @@ public class MinesweeperView implements IGameStateNotifier {
 
     @Override
     public void notifyTimeElapsedChanged(Duration newTimeElapsed) {
-        timerView.setText(
-                    String.format("%d:%02d", newTimeElapsed.toMinutesPart(), newTimeElapsed.toSecondsPart()));  
-        
+        this.timerView.setText(Long.toString(newTimeElapsed.get(ChronoUnit.SECONDS)));
     }
 
     @Override
@@ -220,6 +229,12 @@ public class MinesweeperView implements IGameStateNotifier {
     @Override
     public void notifyExploded(int x, int y) {
         this.tiles[y][x].notifyExplode();
+    }
+
+    @Override
+    public void notifyMineCountChanged(int newMineCount) {
+        this.minesView.setText(Integer.toString(newMineCount));
+
     }
 
 }

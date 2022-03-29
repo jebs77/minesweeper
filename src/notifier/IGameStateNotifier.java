@@ -12,4 +12,7 @@ public interface IGameStateNotifier {
     void notifyFlagged(int x, int y);
     void notifyUnflagged(int x, int y);
     void notifyExploded(int x, int y);
+    void notifyMineCountChanged(int mineCount);
+
+
 }
