@@ -2,6 +2,8 @@ package model;
 
 import notifier.IGameStateNotifier;
 
+import java.awt.*;
+
 public interface PlayableMinesweeper {
     int getWidth();
     int getHeight();
